@@ -19,7 +19,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Request_Details.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: true, length: 200 }),
+    (0, typeorm_1.Column)({ nullable: true, length: 20 }),
     __metadata("design:type", String)
 ], Request_Details.prototype, "request_type", void 0);
 __decorate([
@@ -35,11 +35,11 @@ __decorate([
     __metadata("design:type", Number)
 ], Request_Details.prototype, "tertiary_folder_id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false, length: 500 }),
+    (0, typeorm_1.Column)({ nullable: true, length: 500 }),
     __metadata("design:type", String)
 ], Request_Details.prototype, "request_endpoint", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], Request_Details.prototype, "Authorization_Type", void 0);
 __decorate([

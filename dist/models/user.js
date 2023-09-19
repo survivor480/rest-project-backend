@@ -42,6 +42,18 @@ __decorate([
     (0, typeorm_1.Column)({ nullable: false, default: () => "CURRENT_TIMESTAMP" }),
     __metadata("design:type", String)
 ], Users.prototype, "createdAt", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true, length: 400 }),
+    __metadata("design:type", String)
+], Users.prototype, "linkedin", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true, length: 400 }),
+    __metadata("design:type", String)
+], Users.prototype, "github", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: false, length: 200 }),
+    __metadata("design:type", String)
+], Users.prototype, "email", void 0);
 exports.Users = Users = __decorate([
     (0, typeorm_1.Entity)({ name: 'users' })
 ], Users);

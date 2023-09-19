@@ -21,5 +21,14 @@ export class Users {
   date_of_birth!: Date;
 
   @Column({ nullable: false, default: () => "CURRENT_TIMESTAMP"})
-  createdAt!: string  
+  createdAt!: string 
+
+  @Column({nullable: true, length: 400})
+  linkedin!: string
+
+  @Column({nullable: true, length: 400})
+  github!: string
+
+  @Column({nullable: false, length: 200})
+  email!: string
 }

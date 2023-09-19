@@ -6,4 +6,7 @@ export declare class Users {
     phone_number: string;
     date_of_birth: Date;
     createdAt: string;
+    linkedin: string;
+    github: string;
+    email: string;
 }

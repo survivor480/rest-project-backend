@@ -5,7 +5,7 @@ export class Request_Details {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column({nullable: true, length: 200})
+    @Column({nullable: true, length: 20})
     request_type: string
 
     @Column({nullable: true})
@@ -17,10 +17,10 @@ export class Request_Details {
     @Column({nullable: true})
     tertiary_folder_id: number
 
-    @Column({nullable: false, length: 500})
+    @Column({nullable: true, length: 500})
     request_endpoint: string
 
-    @Column({nullable: false})
+    @Column({nullable: true})
     Authorization_Type: string
 
     @Column({nullable: false, default: 'None', length: 50})
