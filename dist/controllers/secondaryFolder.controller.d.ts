@@ -4,4 +4,5 @@ export declare class SecondaryFolderController {
     private readonly jwtService;
     constructor(jwtService: JwtService);
     createSecondaryFolder(req: Request, res: Response, headers: any): Promise<Response<any, Record<string, any>>>;
+    createRequestInSecondaryFolder(req: Request, res: Response, header: any): Promise<Response<any, Record<string, any>>>;
 }

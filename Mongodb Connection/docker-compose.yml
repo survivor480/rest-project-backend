@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: rest_mongo_master
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: rest
+      MONGO_INITDB_ROOT_PASSWORD: qwerty78
+      MONGO_INITDB_DATABASE: rest
+    ports:
+      - '3302:27017'
+volumes:
+  nosql: 
+    driver: local

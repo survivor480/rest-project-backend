@@ -1,7 +1,10 @@
 import { Request, Response } from 'express';
-import { JwtService } from "@nestjs/jwt";
+import { JwtMiddleWareService } from "middleware/auth.service";
+import { RequestBodyService } from "middleware/request_body.injectable";
 export declare class RequestDetailsController {
     private readonly jwtService;
-    constructor(jwtService: JwtService);
-    updateRequestDetails(req: Request, res: Response): Promise<void>;
+    private readonly requestBodyService;
+    constructor(jwtService: JwtMiddleWareService, requestBodyService: RequestBodyService);
+    updateRequestDetails(req: Request, res: Response): Promise<Response<any, Record<string, any>>>;
+    readRequestDetails(req: Request, res: Response): Promise<Response<any, Record<string, any>>>;
 }

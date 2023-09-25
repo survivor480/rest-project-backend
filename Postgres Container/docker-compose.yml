@@ -5,8 +5,9 @@ services:
     container_name: rest_pg_master
     restart: always
     environment:
-      - POSTGRES_USER=postgres
+      - POSTGRES_USER=rest
       - POSTGRES_PASSWORD=qwerty78
+      - POSTGRES_DB=rest
     ports:
       - '3301:5432'
 volumes:

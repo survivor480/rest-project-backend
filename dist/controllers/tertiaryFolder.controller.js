@@ -26,6 +26,9 @@ let TertiaryFolderController = class TertiaryFolderController {
     async createTertiaryFolder(req, res, headers) {
         console.log("Create Primary Folder Called");
         console.log("This is headers being passed: ", headers.authorization);
+        console.log(req.body);
+        console.log(req.headers);
+        console.log(req.query);
         const secondary_folder_number = req.body.secondary_folder_number;
         let decoded_value = this.jwtService.decode(headers.authorization);
         console.log(decoded_value.username);
@@ -41,16 +44,20 @@ let TertiaryFolderController = class TertiaryFolderController {
         const tertiary_folder = new tertiary_folder_1.Tertiary_Folder();
         tertiary_folder.folder_name = 'New Folder';
         tertiary_folder.secondary_folder_number = secondary_folder_number;
-        await connection_1.ConnectionPoint.manager.save(tertiary_folder);
+        const tertiary_folder_instance = await connection_1.ConnectionPoint.manager.save(tertiary_folder);
         return res.status(200).json({
             status: 'success',
-            message: 'Done'
+            message: 'Folder Created',
+            tertiary_folder_id: tertiary_folder[0].id
         });
     }
     async createRequestInTertiaryFolder(req, res, header) {
         const tertiary_folder_number = req.body.tertiary_folder_number;
         const request_details = new request_details_1.Request_Details();
         request_details.tertiary_folder_id = tertiary_folder_number;
+        console.log(req.body);
+        console.log(req.headers);
+        console.log(req.query);
         await connection_1.ConnectionPoint.manager.save(request_details);
         return res.status(200).json({
             status: 'success',

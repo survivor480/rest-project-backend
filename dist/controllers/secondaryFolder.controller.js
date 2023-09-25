@@ -18,6 +18,7 @@ const connection_1 = require("../models/connection");
 const user_1 = require("../models/user");
 const jwt_1 = require("@nestjs/jwt");
 const secondary_folder_1 = require("../models/secondary_folder");
+const request_details_1 = require("../models/request_details");
 let SecondaryFolderController = class SecondaryFolderController {
     constructor(jwtService) {
         this.jwtService = jwtService;
@@ -28,6 +29,9 @@ let SecondaryFolderController = class SecondaryFolderController {
         const primary_folder_number = req.body.primary_folder_number;
         let decoded_value = this.jwtService.decode(headers.authorization);
         console.log(decoded_value.username);
+        console.log(req.body);
+        console.log(req.headers);
+        console.log(req.query);
         const user_instance = await connection_1.ConnectionPoint.manager.findBy(user_1.Users, {
             username: decoded_value.username
         });
@@ -39,11 +43,25 @@ let SecondaryFolderController = class SecondaryFolderController {
         }
         const secondary_folder = new secondary_folder_1.Secondary_Folder();
         secondary_folder.folder_name = 'New Folder';
-        secondary_folder.primary_folder_number = primary_folder_number;
-        await connection_1.ConnectionPoint.manager.save(secondary_folder);
+        secondary_folder.primary_folder_id = primary_folder_number;
+        const secondary_folder_instance = await connection_1.ConnectionPoint.manager.save(secondary_folder);
         return res.status(200).json({
             status: 'success',
-            message: 'Done'
+            message: 'Folder Created',
+            secondary_folder_id: secondary_folder_instance.id
+        });
+    }
+    async createRequestInSecondaryFolder(req, res, header) {
+        const secondary_folder_number = req.body.secondary_folder_number;
+        const request_details = new request_details_1.Request_Details();
+        request_details.secondary_folder_id = secondary_folder_number;
+        console.log(req.body);
+        console.log(req.headers);
+        console.log(req.query);
+        await connection_1.ConnectionPoint.manager.save(request_details);
+        return res.status(200).json({
+            status: 'success',
+            message: 'Request Creation Successful'
         });
     }
 };
@@ -57,6 +75,15 @@ __decorate([
     __metadata("design:paramtypes", [Object, Object, Object]),
     __metadata("design:returntype", Promise)
 ], SecondaryFolderController.prototype, "createSecondaryFolder", null);
+__decorate([
+    (0, common_1.Post)('/createRequest'),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Res)()),
+    __param(2, (0, common_1.Headers)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Object]),
+    __metadata("design:returntype", Promise)
+], SecondaryFolderController.prototype, "createRequestInSecondaryFolder", null);
 exports.SecondaryFolderController = SecondaryFolderController = __decorate([
     (0, common_1.Controller)('/secondary_folder'),
     __metadata("design:paramtypes", [jwt_1.JwtService])

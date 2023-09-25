@@ -25,7 +25,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ nullable: false }),
     __metadata("design:type", Number)
-], Secondary_Folder.prototype, "primary_folder_number", void 0);
+], Secondary_Folder.prototype, "primary_folder_id", void 0);
 exports.Secondary_Folder = Secondary_Folder = __decorate([
     (0, typeorm_1.Entity)({ name: 'secondary_folder' })
 ], Secondary_Folder);

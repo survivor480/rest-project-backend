@@ -20,4 +20,16 @@ export class JwtMiddleWareService {
             access_token: await this.jwtService.signAsync(payload),
         }
     }
+
+    async checkForAccessTokenExpiry(token: string): Promise<any> {
+        let decoded_token = this.jwtService.verify(token);
+
+        console.log(decoded_token);
+
+        if(decoded_token.exp > Date.now()){
+            return false
+        } else {
+            return true;
+        }
+    }
 }

@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  # master_postgres:
+  #   image: postgres:14.1
+  #   container_name: rest_pg_master
+  #   restart: always
+  #   environment:
+  #     - POSTGRES_USER=rest
+  #     - POSTGRES_PASSWORD=qwerty78
+  #     - POSTGRES_DB=rest
+  #   ports:
+  #     - '3301:5432'
+  #   volumes:
+  #     - ./Postgres\ Connection:/postgres
+
+  # redis_cache:
+  #   image: redis:7.2.1-alpine
+  #   container_name: rest_redis_master
+  #   restart: always
+  #   ports:
+  #     - '3103:6379'
+  #   command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+  #   volumes: 
+  #     - ./Redis\ Connection:/redis_cache
+
+  # mongodb:
+  #   image: mongo:6.0
+  #   container_name: rest_mongo_master
+  #   restart: always
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: rest
+  #     MONGO_INITDB_ROOT_PASSWORD: qwerty78
+  #     MONGO_INITDB_DATABASE: rest
+  #   ports:
+  #     - '3302:27017'
+  #   volumes:
+  #     - ./Mongodb\ Connection:/mongodb
+
+  emis:
+    build: .
+    container_name: rest_api_server
+    volumes: 
+      - .:/rest_server
+    ports:
+      - "1200:3000"
+
+

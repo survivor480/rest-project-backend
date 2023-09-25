@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity({name: 'primary_folder'})
 export class Primary_Folder {
@@ -10,4 +10,7 @@ export class Primary_Folder {
 
     @Column({nullable: false})
     user_number: number
+
+    @Column({nullable: true})
+    workspace_id: number
 }

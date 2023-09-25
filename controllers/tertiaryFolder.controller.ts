@@ -18,6 +18,12 @@ export class TertiaryFolderController {
 
         console.log("This is headers being passed: ", headers.authorization);
 
+        console.log(req.body);
+
+        console.log(req.headers);
+
+        console.log(req.query);
+
         const secondary_folder_number = req.body.secondary_folder_number;
 
         let decoded_value:any = this.jwtService.decode(headers.authorization);
@@ -40,11 +46,12 @@ export class TertiaryFolderController {
         tertiary_folder.folder_name = 'New Folder';
         tertiary_folder.secondary_folder_number = secondary_folder_number;
 
-        await ConnectionPoint.manager.save(tertiary_folder);
+        const tertiary_folder_instance = await ConnectionPoint.manager.save(tertiary_folder);
 
         return res.status(200).json({
             status: 'success',
-            message: 'Done'
+            message: 'Folder Created',
+            tertiary_folder_id: tertiary_folder[0].id
         })
     }
 
@@ -55,11 +62,17 @@ export class TertiaryFolderController {
         const request_details = new Request_Details();
         request_details.tertiary_folder_id = tertiary_folder_number;
 
+        console.log(req.body);
+
+        console.log(req.headers);
+
+        console.log(req.query);
+
         await ConnectionPoint.manager.save(request_details);
 
         return res.status(200).json({
             status: 'success',
             message: 'Request Creation Successful'
-        })
+        });
     }
 }

@@ -4,15 +4,16 @@ import { Primary_Folder } from "../models/primary_folder";
 import { Request_Details } from "./request_details";
 import { Secondary_Folder } from "./secondary_folder";
 import { Tertiary_Folder } from "./tertiary_folder";
+import { Workspace } from "./workspace";
 
 const AppDataSource = new DataSource({
     type: "postgres",
-    host: "127.0.0.1",
+    host: "172.17.0.1",
     port: 3301,
-    username: "postgres",
+    username: "rest",
     password: "qwerty78",
     database: "rest",
-    entities: [Users, Primary_Folder, Request_Details, Secondary_Folder, Tertiary_Folder]
+    entities: [Users, Primary_Folder, Request_Details, Secondary_Folder, Tertiary_Folder, Workspace]
 });
 
 AppDataSource.initialize().then(() => {

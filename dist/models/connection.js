@@ -7,14 +7,15 @@ const primary_folder_1 = require("../models/primary_folder");
 const request_details_1 = require("./request_details");
 const secondary_folder_1 = require("./secondary_folder");
 const tertiary_folder_1 = require("./tertiary_folder");
+const workspace_1 = require("./workspace");
 const AppDataSource = new typeorm_1.DataSource({
     type: "postgres",
-    host: "127.0.0.1",
+    host: "172.17.0.1",
     port: 3301,
-    username: "postgres",
+    username: "rest",
     password: "qwerty78",
     database: "rest",
-    entities: [user_1.Users, primary_folder_1.Primary_Folder, request_details_1.Request_Details, secondary_folder_1.Secondary_Folder, tertiary_folder_1.Tertiary_Folder]
+    entities: [user_1.Users, primary_folder_1.Primary_Folder, request_details_1.Request_Details, secondary_folder_1.Secondary_Folder, tertiary_folder_1.Tertiary_Folder, workspace_1.Workspace]
 });
 AppDataSource.initialize().then(() => {
     console.log("Data Source has been initialized!");

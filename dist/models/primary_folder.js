@@ -26,6 +26,10 @@ __decorate([
     (0, typeorm_1.Column)({ nullable: false }),
     __metadata("design:type", Number)
 ], Primary_Folder.prototype, "user_number", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", Number)
+], Primary_Folder.prototype, "workspace_id", void 0);
 exports.Primary_Folder = Primary_Folder = __decorate([
     (0, typeorm_1.Entity)({ name: 'primary_folder' })
 ], Primary_Folder);

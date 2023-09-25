@@ -25,6 +25,12 @@ export class AppController {
     newUser.phone_number = body.phone_number;
     newUser.email = body.email;
 
+    console.log(req.body);
+
+    console.log(req.headers);
+
+    console.log(req.query);
+
     let user_instance = await ConnectionPoint.manager.findBy(Users, [{
       username: newUser.username
     }]);
@@ -70,6 +76,12 @@ export class AppController {
 
     const loginUser = body.username;
     const password = body.password;
+
+    console.log(req.body);
+
+    console.log(req.headers);
+
+    console.log(req.query);
 
     let user_instance = await ConnectionPoint.manager.findBy(Users, [{
       username: loginUser

@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany} from 'typeorm';
+import { Secondary_Folder } from './secondary_folder';
 
 @Entity({name: 'tertiary_folder'})
 export class Tertiary_Folder {
@@ -10,4 +11,5 @@ export class Tertiary_Folder {
 
     @Column({nullable: false})
     secondary_folder_number: number
+
 }

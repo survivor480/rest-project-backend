@@ -15,26 +15,35 @@ import { JwtMiddleWareService } from 'middleware/auth.service';
 import { PrimaryFolderController } from 'controllers/primaryFolder.controller';
 import { SecondaryFolderController } from 'controllers/secondaryFolder.controller';
 import { TertiaryFolderController } from 'controllers/tertiaryFolder.controller';
+import { RequestDetailsController } from 'controllers/requestDetails.controller';
+import { MongooseModule } from '@nestjs/mongoose';
+import { RequestBodySchema } from 'models/request_body';
+import { RequestBodyService } from 'middleware/request_body.injectable';
+import { WorkspaceController } from 'controllers/workspace.controller';
+import { Workspace } from 'models/workspace';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: '127.0.0.1',
+      host: '172.17.0.1',
       port: 3301,
-      username: 'postgres',
+      username: 'rest',
       password: 'qwerty78',
       database: 'rest',
-      entities: [Users, Primary_Folder, Secondary_Folder, Tertiary_Folder, Request_Details],
+      entities: [Users, Primary_Folder, Secondary_Folder, Tertiary_Folder, Request_Details, Workspace],
       synchronize: true
     }),
     JwtModule.register({
       global: true,
       secret: 'Just a testing server secret',
-      signOptions: { expiresIn: '2592000s' },
+      signOptions: { expiresIn: '2592000s' }
     }),
+    MongooseModule.forRoot('mongodb://rest:qwerty78@172.17.0.1:3302/rest'),
+    MongooseModule.forFeature([{name: 'RequestBody', schema: RequestBodySchema}])
   ],
-  controllers: [AppController, PrimaryFolderController, SecondaryFolderController, TertiaryFolderController],
-  providers: [AppService, AuthService, JwtMiddleWareService],
+  controllers: [AppController, PrimaryFolderController, SecondaryFolderController, TertiaryFolderController, RequestDetailsController,
+    WorkspaceController],
+  providers: [AppService, AuthService, JwtMiddleWareService, RequestBodyService],
 })
 export class AppModule {}

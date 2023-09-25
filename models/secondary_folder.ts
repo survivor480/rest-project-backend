@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity({name: 'secondary_folder'})
 export class Secondary_Folder {
@@ -9,5 +9,5 @@ export class Secondary_Folder {
     folder_name: string
 
     @Column({nullable: false})
-    primary_folder_number: number
+    primary_folder_id: number
 }

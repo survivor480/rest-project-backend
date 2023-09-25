@@ -32,6 +32,9 @@ let AppController = class AppController {
         newUser.password = await this.authService.hashPassword(body.password);
         newUser.phone_number = body.phone_number;
         newUser.email = body.email;
+        console.log(req.body);
+        console.log(req.headers);
+        console.log(req.query);
         let user_instance = await connection_1.ConnectionPoint.manager.findBy(user_1.Users, [{
                 username: newUser.username
             }]);
@@ -65,6 +68,9 @@ let AppController = class AppController {
         const body = req.body;
         const loginUser = body.username;
         const password = body.password;
+        console.log(req.body);
+        console.log(req.headers);
+        console.log(req.query);
         let user_instance = await connection_1.ConnectionPoint.manager.findBy(user_1.Users, [{
                 username: loginUser
             }, {

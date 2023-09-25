@@ -1,9 +1,10 @@
-import { Controller, Res, Req, Post, Headers } from "@nestjs/common";
+import { Controller, Res, Req, Post, Headers, Header } from "@nestjs/common";
 import { Request, Response } from 'express';
 import { ConnectionPoint } from "models/connection";
 import { Users } from "models/user";
 import { JwtService } from "@nestjs/jwt";
 import { Secondary_Folder } from "models/secondary_folder";
+import { Request_Details } from "models/request_details";
 
 @Controller('/secondary_folder')
 export class SecondaryFolderController {
@@ -23,6 +24,12 @@ export class SecondaryFolderController {
 
         console.log(decoded_value.username);
 
+        console.log(req.body);
+
+        console.log(req.headers);
+
+        console.log(req.query);
+
         const user_instance:any = await ConnectionPoint.manager.findBy(Users, {
             username: decoded_value.username
         });
@@ -37,13 +44,35 @@ export class SecondaryFolderController {
         const secondary_folder = new Secondary_Folder();
 
         secondary_folder.folder_name = 'New Folder';
-        secondary_folder.primary_folder_number = primary_folder_number;
+        secondary_folder.primary_folder_id = primary_folder_number;
 
-        await ConnectionPoint.manager.save(secondary_folder);
+        const secondary_folder_instance = await ConnectionPoint.manager.save(secondary_folder);
 
         return res.status(200).json({
             status: 'success',
-            message: 'Done'
+            message: 'Folder Created',
+            secondary_folder_id: secondary_folder_instance.id
+        });
+    }
+
+    @Post('/createRequest')
+    async createRequestInSecondaryFolder(@Req() req: Request, @Res() res: Response, @Headers() header){
+        const secondary_folder_number = req.body.secondary_folder_number;
+
+        const request_details = new Request_Details();
+        request_details.secondary_folder_id = secondary_folder_number;
+
+        console.log(req.body);
+
+        console.log(req.headers);
+
+        console.log(req.query);
+
+        await ConnectionPoint.manager.save(request_details);
+
+        return res.status(200).json({
+            status: 'success',
+            message: 'Request Creation Successful'
         })
     }
 }
