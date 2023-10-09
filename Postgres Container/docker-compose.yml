@@ -1,15 +1,12 @@
-version: '3.8'
+version: '3.7'
 services:
-  db:
-    image: postgres:14.1
-    container_name: rest_pg_master
-    restart: always
-    environment:
-      - POSTGRES_USER=rest
-      - POSTGRES_PASSWORD=qwerty78
-      - POSTGRES_DB=rest
-    ports:
-      - '3301:5432'
-volumes:
-  db:
-    driver: local
+    postgres:
+        image: postgres:14.1
+        container_name: rest_pg_master
+        restart: always
+        environment:
+          - POSTGRES_USER=rest
+          - POSTGRES_PASSWORD=qwerty78
+          - POSTGRES_DB=rest
+        ports:
+          - '3301:5432'

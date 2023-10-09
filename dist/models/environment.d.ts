@@ -1,7 +1,7 @@
 export declare class Environment {
     id: number;
-    folder_name: string;
+    environment_name: string;
     default: boolean;
-    type: boolean;
+    type: string;
     user_number: number;
 }

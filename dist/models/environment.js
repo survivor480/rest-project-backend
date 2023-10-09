@@ -21,14 +21,14 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ nullable: false, length: 200 }),
     __metadata("design:type", String)
-], Environment.prototype, "folder_name", void 0);
+], Environment.prototype, "environment_name", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: false }),
     __metadata("design:type", Boolean)
 ], Environment.prototype, "default", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: false }),
-    __metadata("design:type", Boolean)
+    __metadata("design:type", String)
 ], Environment.prototype, "type", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: false }),

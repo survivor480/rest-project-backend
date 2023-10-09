@@ -5,5 +5,6 @@ export declare class EnvironmentController {
     private readonly jwtMiddlewareService;
     private readonly jwService;
     constructor(jwtMiddlewareService: JwtMiddleWareService, jwService: JwtService);
-    createEnvironment(req: Request, res: Response): Promise<void>;
+    createEnvironment(req: Request, res: Response): Promise<Response<any, Record<string, any>>>;
+    readEnvironment(req: Request, res: Response): Promise<Response<any, Record<string, any>>>;
 }
